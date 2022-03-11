@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AIUTO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+     <link rel="icon" type="image/x-icon" href="C:\Users\asus\Downloads\2022-03-09.ico">
+     <link rel="stylesheet" href="style.css">
+        <script>
+            
+            window.onload = function() 
+            {var context = new AudioContext();}
+        </script>
+       
+        
+        
+<style>
+
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background-color: #D9A407;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+
+  position: fixed;
+ 
+  
+  border-radius: 50%;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #ffffff;
+  z-index: 9;
+  
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 400px;
+  height: 590px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  height: 70%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #ffffff;
+  resize: none;
+  min-height: 200px;
+  
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #731A06;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: #731A06;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.column
+{
+  height: 300px;
+  display: flex;
+
+  margin: 100px; 
+} 
+
+.backg {
+  flex: 50%;
+  padding: 0 4px;
+}
+
+.backg img {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+.audio
+{
+  position: center;
+  width: 100%;
+  height: 100%;
+  color: rgb(245, 177, 88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+header
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.showcase
+{
+  position: absolute;
+  right: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+.showcase.active
+{
+  right: 300px;
+}
+
+.showcase video
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.overlay
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #03a9f4;
+  mix-blend-mode: overlay;
+}
+
+.text
+{
+  position: center;
+  z-index: 10;
+}
+.text h2
+{
+  font-size: 5em;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+.text h3
+{
+  font-size: 4em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+.text p
+{
+  font-size: 1.1em;
+  color: #fff;
+  margin: 20px 0;
+  font-weight: 400;
+  max-width: 700px;
+}
+.text a
+{
+  display: inline-block;
+  font-size: 1em;
+  background: #fff;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #111;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+.text a:hover
+{
+  letter-spacing: 6px;
+}
+
+@media (max-width: 991px)
+{
+  .showcase,
+  .showcase header
+  {
+    padding: 40px;
+  }
+  .text h2
+  {
+    font-size: 3em;
+  }
+  .text h3
+  {
+    font-size: 2em;
+  }
+}
+
+audio:hover {
+    transform: scale(1.1);filter: drop-shadow(2px 3px 3px #333);
+
+} </style>
+        <script>
+             const menuToggle = document.querySelector('.toggle');
+      const showcase = document.querySelector('.showcase');
+
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        showcase.classList.toggle('active');
+      })
+        </script>
+    </head>
+    <body>
+       <header> 
+             <audio controls loop id="playaudio" autoplay>
+         <source src="C:\Users\asus\Downloads\relaxing-japanese-zen-music-best-sleep-music-peaceful-music.mp3" type="audio/mpeg"><!-- copy paste the path of music-->
+         Your browser does not support the audio element.
+        </audio>
+        <br><br><br> 
+ 
+   </header>
+  <section class="showcase">   
+   <div class="video-container">
+<video src="C:\Users\asus\Downloads\Island - 66177.mov" autoplay muted loop></video>
+</div>
+     
+<button class="open-button" onclick="openForm()"></button>
+
+<div class="chat-popup" id="myForm"> 
+  <form action="action_page.php" class="form-container">
+    <h1>AIUTO</h1>
+
+    <label for="msg"><b>Your Personal Companion</b></label>
+    <textarea placeholder="text me something :)" name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+<script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+  </script>
+      
+
+  </section>  
+         
+    </body>
+</html>
